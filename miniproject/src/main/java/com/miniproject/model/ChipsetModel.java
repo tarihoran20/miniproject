@@ -16,8 +16,8 @@ public class ChipsetModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String nameChipset;
+	private int id_chipset;
+	private String chipset;
 	
 	
 

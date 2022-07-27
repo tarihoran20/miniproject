@@ -16,7 +16,7 @@ public class OsModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String nameOs;
+	private int id_os;
+	private String os;
 
 }

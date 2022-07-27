@@ -22,4 +22,23 @@ public class ChipsetRepository implements IChipsetRepository {
 		return jdbc.query(query, new BeanPropertyRowMapper<ChipsetModel>(ChipsetModel.class));
 	}
 
+	@Override
+	public String insert(ChipsetModel model, String chipset) {
+		var query = "insert into t_chipset (chipset) value (?)";
+		
+		return "Inserted --> " + jdbc.update(query, new Object[] {model.getChipset()});
+	}
+
+	@Override
+	public int update(ChipsetModel model, int id) {
+		var query = "update t_chipset set chipset = ? where id_chipset = " + id;
+		return jdbc.update(query, new Object[] {model.getChipset()}) ;
+	}
+
+	@Override
+	public int delete(int id) {
+		var query = "delete from t_chipset where id_chipset = " + id ;
+		return jdbc.update(query);
+	}
+
 }

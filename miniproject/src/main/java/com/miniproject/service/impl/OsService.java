@@ -17,8 +17,22 @@ public class OsService implements IOsService{
 
 	@Override
 	public List<OsModel> readAll() {
-		// TODO Auto-generated method stub
 		return osRepository.readAll();
+	}
+
+	@Override
+	public String insert(OsModel model, String os) {
+		return osRepository.insert(model, os);
+	}
+
+	@Override
+	public int update(OsModel model, int id) {
+		return osRepository.update(model, id);
+	}
+
+	@Override
+	public int delete(int id) {
+		return osRepository.delete(id);
 	}
 	
 	

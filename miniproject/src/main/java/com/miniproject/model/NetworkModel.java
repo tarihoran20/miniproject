@@ -16,8 +16,8 @@ public class NetworkModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String nameNetwork;
+	private int id_network;
+	private String network;
 	
 	
 

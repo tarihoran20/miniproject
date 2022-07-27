@@ -21,4 +21,19 @@ public class NetworkService implements INetworkService {
 		return networkRepository.readAll();
 	}
 
+	@Override
+	public String insert(NetworkModel model, String network) {
+		return networkRepository.insert(model, network);
+	}
+
+	@Override
+	public int update(NetworkModel model, int id) {
+		return networkRepository.update(model, id);
+	}
+
+	@Override
+	public int delete(int id) {
+		return networkRepository.delete(id);
+	}
+
 }

@@ -20,4 +20,20 @@ public class ChipsetService implements IChipsetService{
 		return chipsetRepository.readAll();
 	}
 
+	@Override
+	public String insert(ChipsetModel model, String chipset) {
+		
+		return chipsetRepository.insert(model, chipset);
+	}
+
+	@Override
+	public int update(ChipsetModel model, int id) {
+		return chipsetRepository.update(model, id);
+	}
+
+	@Override
+	public int delete(int id) {
+		return chipsetRepository.delete(id);
+	}
+
 }

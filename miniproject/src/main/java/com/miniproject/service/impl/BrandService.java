@@ -20,4 +20,25 @@ public class BrandService implements IBrandService {
 		return brandRepository.readAll();
 	}
 
+	@Override
+	public String insert(BrandModel model, String brand) {
+		return brandRepository.insert(model, brand);
+	}
+
+	@Override
+	public int update(BrandModel model, int id) {
+		return brandRepository.update(model, id);
+	}
+
+	@Override
+	public int delete(int id) {
+		return brandRepository.delete(id);
+	}
+
+
+
+
+
+	
+
 }

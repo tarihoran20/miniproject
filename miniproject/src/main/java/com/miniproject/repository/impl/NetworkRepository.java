@@ -20,4 +20,22 @@ public class NetworkRepository implements INetworkRepository {
 		return jdbc.query(query, new BeanPropertyRowMapper<NetworkModel>(NetworkModel.class));
 	}
 
+	@Override
+	public String insert(NetworkModel model, String network) {
+		var query = " insert into t_network (network) value (?) " ;
+		return "Inserted --> " + jdbc.update(query, new Object[] {model.getNetwork()});
+	}
+
+	@Override
+	public int update(NetworkModel model, int id) {
+		var query = " update t_network set network = ? where id_network = " + id;
+		return jdbc.update(query, new Object[] {model.getNetwork()});
+	}
+
+	@Override
+	public int delete(int id) {
+		var query = "delete from t_network where id_network = " + id ;
+		return jdbc.update(query);
+	}
+
 }

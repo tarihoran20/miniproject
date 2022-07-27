@@ -15,11 +15,10 @@ public class DataHandphoneModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	private int id;
-	private String nameType;
-	private String nameOs;
-	private String nameChipset;
-	private String nameNetwork;
+	private String id_brand;
+	private String type;
+	private String id_os;
+	private String id_chipset;
+	private String price;
 
 }

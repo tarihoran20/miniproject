@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.miniproject.model.ChipsetModel;
 import com.miniproject.model.OsModel;
 import com.miniproject.repository.IOsRepository;
 
@@ -21,6 +20,25 @@ public class OsRepository implements IOsRepository{
 	public List<OsModel> readAll() {
 		var query = "select * from t_os";
 		return jdbc.query(query, new BeanPropertyRowMapper<OsModel>(OsModel.class));
+	}
+
+	@Override
+	public String insert(OsModel model, String os) {
+		var query = "insert into t_os (os) value (?)";
+		
+		return "Inserted --> " + jdbc.update(query, new Object[] {model.getOs()});
+	}
+
+	@Override
+	public int update(OsModel model, int id) {
+		var query = "update t_os set os = ? where id_os = " + id;
+		return jdbc.update(query, new Object[] {model.getOs()}) ;
+	}
+
+	@Override
+	public int delete(int id) {
+		var query = "delete from t_os where id_os = " + id ;
+		return jdbc.update(query);
 	}
 
 }

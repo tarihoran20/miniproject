@@ -15,7 +15,7 @@ public class BrandModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	private String nameBrand;
+	private int id_brand;
+	private String brand;
 
 }
