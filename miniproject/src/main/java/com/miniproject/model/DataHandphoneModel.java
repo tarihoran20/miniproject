@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import antlr.collections.List;
 import lombok.Data;
 
 @Data
@@ -15,10 +16,14 @@ public class DataHandphoneModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id_brand;
+	private int id;
 	private String type;
+	private String id_brand;
 	private String id_os;
 	private String id_chipset;
 	private String price;
+	private String id_network;
+	//private java.util.List<PhoneNetworkModel> network;
+	//private List listnetwotk;
 
 }

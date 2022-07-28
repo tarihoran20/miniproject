@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.miniproject.model.DataHandphoneModel;
+import com.miniproject.model.PhoneJoinNetworkModel;
+import com.miniproject.model.PhoneNetworkModel;
 import com.miniproject.repository.impl.DataHandphoneRepository;
 import com.miniproject.service.IDataHandphoneService;
 
@@ -15,23 +17,54 @@ public class DataHandphoneService implements IDataHandphoneService {
 	@Autowired
 	DataHandphoneRepository datahandphoneRepository;
 
+
 	@Override
 	public List<DataHandphoneModel> readAll() {
 		return datahandphoneRepository.readAll();
 	}
 
 	@Override
-	public String insert(DataHandphoneModel model, String idBrand, String type, String idOs, String idChipset,
-			String idNetwork, int price) {
-		return datahandphoneRepository.insert(model, idBrand, type, idOs, idChipset, idNetwork, price);
+	public String insert(DataHandphoneModel model, String id_brand, String type, String id_os, String id_chipset,
+			String[] id_network, int price) {
+		return datahandphoneRepository.insert(model, id_brand, type, id_os, id_chipset, id_network, price);
 	}
 
 	@Override
 	public List<DataHandphoneModel> read() {
-		// TODO Auto-generated method stub
+		
+		DataHandphoneModel model = new DataHandphoneModel();
+		PhoneNetworkModel model2 = new PhoneNetworkModel();
+		
+		for (int i=0; i<readnetwork().size(); i++) {
+			if(model.getType() == model2.getType()) {
+				//System.out.println(model2.getNetwork());
+			}
+		}
+		
 		return datahandphoneRepository.read();
 	}
 
+	@Override
+	public List<PhoneNetworkModel> readnetwork() {
+		return datahandphoneRepository.readnetwork();
+	}
+
+	@Override
+	public List<PhoneJoinNetworkModel> join() {
+		return null;
+	}
+
+	@Override
+	public int deletehandphone(String phone) {
+		return datahandphoneRepository.deletehandphone(phone);
+	}
+
+	
+	
+	
+	
+	
+	
 
 	
 	
