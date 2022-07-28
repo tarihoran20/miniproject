@@ -11,7 +11,7 @@ public interface IDataHandphoneRepository {
 	
 	public List<DataHandphoneModel> read(); //read by foreign key
 	
-	public String insert(DataHandphoneModel model, String id_brand, String type, String id_os, String id_chipset,String[] id_network, int price);
+	public String insert(DataHandphoneModel model, int id_brand, String type, int id_os, int id_chipset,String[] id_network, int price);
 	
 	public List<PhoneNetworkModel> readnetwork();
 	

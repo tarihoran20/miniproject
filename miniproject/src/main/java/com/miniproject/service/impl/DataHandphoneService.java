@@ -17,30 +17,23 @@ public class DataHandphoneService implements IDataHandphoneService {
 	@Autowired
 	DataHandphoneRepository datahandphoneRepository;
 
-
 	@Override
 	public List<DataHandphoneModel> readAll() {
 		return datahandphoneRepository.readAll();
 	}
 
 	@Override
-	public String insert(DataHandphoneModel model, String id_brand, String type, String id_os, String id_chipset,
-			String[] id_network, int price) {
-		return datahandphoneRepository.insert(model, id_brand, type, id_os, id_chipset, id_network, price);
-	}
-
-	@Override
 	public List<DataHandphoneModel> read() {
-		
+
 		DataHandphoneModel model = new DataHandphoneModel();
 		PhoneNetworkModel model2 = new PhoneNetworkModel();
-		
-		for (int i=0; i<readnetwork().size(); i++) {
-			if(model.getType() == model2.getType()) {
-				//System.out.println(model2.getNetwork());
+
+		for (int i = 0; i < readnetwork().size(); i++) {
+			if (model.getType() == model2.getType()) {
+				// System.out.println(model2.getNetwork());
 			}
 		}
-		
+
 		return datahandphoneRepository.read();
 	}
 
@@ -59,14 +52,10 @@ public class DataHandphoneService implements IDataHandphoneService {
 		return datahandphoneRepository.deletehandphone(phone);
 	}
 
-	
-	
-	
-	
-	
-	
-
-	
-	
+	@Override
+	public String insert(DataHandphoneModel model, int id_brand, String type, int id_os, int id_chipset,
+			String[] id_network, int price) {
+		return datahandphoneRepository.insert(model, id_brand, type, id_os, id_chipset, id_network, price);
+	}
 
 }

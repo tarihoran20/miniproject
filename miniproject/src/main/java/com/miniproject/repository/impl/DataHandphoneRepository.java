@@ -25,19 +25,29 @@ public class DataHandphoneRepository implements IDataHandphoneRepository {
 	}
 
 	@Override
-	public String insert(DataHandphoneModel model, String id_brand, String type, String id_os, String id_chipset,
+	public String insert(DataHandphoneModel model, int id_brand, String type, int id_os, int id_chipset,
 			String[] id_network, int price) {
 
 		for (int i = 0; i < id_network.length; i++) {
 			if (id_network[i] != "," && id_network[i] != " ") {
+				// var query = " insert into t_datahandphone (id_brand, type, id_os, id_chipset,
+				// id_network, price) value (" +id_brand+ ", " +type+ ", " +id_os+ ", "
+				// +id_chipset+ ", " +id_network[i]+ ", " +price+ ")";
+				// jdbc.update(query);
 				var query = " insert into t_datahandphone (id_brand, type, id_os, id_chipset, id_network, price)"
 						+ "value (?, ?, ?, ?, " + id_network[i] + ", ?)";
 				jdbc.update(query, new Object[] { model.getId_brand(), model.getType(), model.getId_os(),
 						model.getId_chipset(), model.getPrice() });
+
 			}
 		}
+		// var query = " insert into t_datahandphone (id_brand, type, id_os, id_chipset,
+		// id_network, price) value (?, ?, ?, ?, ?, ?)";
 
 		return "Inserted --> ";
+//		 jdbc.update(query, new Object[] { model.getId_brand(), model.getType(),
+//		 model.getId_os(),model.getId_chipset(), model.getId_network(),
+//		 model.getPrice() });
 	}
 
 	@Override
@@ -56,7 +66,7 @@ public class DataHandphoneRepository implements IDataHandphoneRepository {
 //				+ "join t_network\r\n"
 //				+ "on t_datahandphone.id_network = t_network.id_network\r\n"
 //				+ "where t_datahandphone.type like '%A03s%';";
-		
+
 		return jdbc.query(query, new BeanPropertyRowMapper<DataHandphoneModel>(DataHandphoneModel.class));
 
 	}
@@ -69,10 +79,9 @@ public class DataHandphoneRepository implements IDataHandphoneRepository {
 		return jdbc.query(query, new BeanPropertyRowMapper<PhoneNetworkModel>(PhoneNetworkModel.class));
 	}
 
-	public  int deletehandphone(String phone) {
-		var query = "delete from t_datahandphone where type like '%?%';";
-		return jdbc.update(query, phone);
+	public int deletehandphone(String phone) {
+		var query = "delete from t_datahandphone where type like '%" + phone + "%'";
+		return jdbc.update(query);
 	}
-
 
 }
