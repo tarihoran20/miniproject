@@ -34,11 +34,17 @@ public class ChipsetRepository implements IChipsetRepository {
 		var query = "delete from t_chipset where id_chipset = " + id ;
 		return jdbc.update(query);
 	}
-
+	
+	@Override
 	public int updatechipset(ChipsetModel chipsetModel, int id) {
-		var query = "update t_brand set brand = ? where id_brand = " + id;
+		var query = "update t_chipset set chipset = ? where id_chipset = " + id;
 		
 		return jdbc.update(query, new Object[] {chipsetModel.getChipset()});
+	}
+
+	public int deletechipset(int id) {
+		var query = "delete from t_chipset where id_chipset = " + id;
+		return jdbc.update(query);
 	}
 
 }

@@ -21,8 +21,8 @@ public class OsService implements IOsService{
 	}
 
 	@Override
-	public String insert(OsModel model, String os) {
-		return osRepository.insert(model, os);
+	public String insertos(OsModel osModel) {
+		return osRepository.insertos(osModel);
 	}
 
 	@Override

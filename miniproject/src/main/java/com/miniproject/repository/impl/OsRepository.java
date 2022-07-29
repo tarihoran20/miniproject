@@ -23,13 +23,6 @@ public class OsRepository implements IOsRepository{
 	}
 
 	@Override
-	public String insert(OsModel model, String os) {
-		var query = "insert into t_os (os) value (?)";
-		
-		return "Inserted --> " + jdbc.update(query, new Object[] {model.getOs()});
-	}
-
-	@Override
 	public int update(OsModel model, int id) {
 		var query = "update t_os set os = ? where id_os = " + id;
 		return jdbc.update(query, new Object[] {model.getOs()}) ;
@@ -39,6 +32,12 @@ public class OsRepository implements IOsRepository{
 	public int delete(int id) {
 		var query = "delete from t_os where id_os = " + id ;
 		return jdbc.update(query);
+	}
+	
+	@Override
+	public String insertos(OsModel osModel) {
+		var query = "insert into t_os (os) value (?)";
+		return ""+jdbc.update(query, new Object[] {osModel.getOs()});
 	}
 
 }

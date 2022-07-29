@@ -3,6 +3,7 @@ package com.miniproject.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +23,8 @@ public class OsController {
 	}
 	
 	@RequestMapping("/miniproject/insertos")
-	public String insert(OsModel model, @RequestParam String os) {
-		return osService.insert(model, os);
+	public String insertos(@RequestBody OsModel osModel) {
+		return osService.insertos(osModel);
 	}
 	
 	@RequestMapping("/miniproject/updateos")

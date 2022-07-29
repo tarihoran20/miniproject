@@ -34,8 +34,8 @@ public class ChipsetService implements IChipsetService{
 	}
 
 	@Override
-	public int delete(int id) {
-		return chipsetRepository.delete(id);
+	public int deletechipset(int id) {
+		return chipsetRepository.deletechipset(id);
 	}
 
 }

@@ -8,10 +8,10 @@ public interface IOsService {
 	
 	public List<OsModel> readAll();
 	
-	public String insert(OsModel model, String os);
-	
 	public int update(OsModel model, int id);
 	
 	public int delete(int id);
+
+	public String insertos(OsModel osModel);
 
 }
