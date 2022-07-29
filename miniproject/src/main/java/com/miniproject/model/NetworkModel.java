@@ -16,7 +16,7 @@ public class NetworkModel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_network;
+	//private int id_network;
 	private String network;
 	
 	

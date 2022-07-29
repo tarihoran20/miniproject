@@ -8,10 +8,10 @@ public interface IChipsetService {
 	
 	public List<ChipsetModel> readAll();
 	
-	public String insert(ChipsetModel model, String chipset);
-	
-	public int update(ChipsetModel model, int id);
+	public String insertchipset(ChipsetModel model);
 	
 	public int delete(int id);
+
+	public int updatechipset(ChipsetModel model, int id);
 
 }

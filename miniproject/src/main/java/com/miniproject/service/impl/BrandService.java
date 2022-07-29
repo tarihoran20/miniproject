@@ -21,20 +21,21 @@ public class BrandService implements IBrandService {
 	}
 
 	@Override
-	public String insert(BrandModel model, String brand) {
-		return brandRepository.insert(model, brand);
+	public int updatebrand(BrandModel brandModel, int id) {
+		return brandRepository.updatebrand(brandModel, id);
 	}
 
 	@Override
-	public int update(BrandModel model, int id) {
-		return brandRepository.update(model, id);
+	public int deletebrand(int id) {
+		return brandRepository.deletebrand(id);
 	}
 
 	@Override
-	public int delete(int id) {
-		return brandRepository.delete(id);
+	public String insertbrand(BrandModel brandModel) {
+		
+		return brandRepository.insertbrand(brandModel);
 	}
-
+	
 
 
 

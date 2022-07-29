@@ -23,25 +23,24 @@ public class BrandRepository implements IBrandRepository{
 	}
 
 	@Override
-	public String insert(BrandModel model, String brand) {
-		var query = "insert into t_brand(brand) value (?)" ;
-		return "inserted " + jdbc.update(query, new Object[] {model.getBrand()});
-	}
-
-	@Override
-	public int update(BrandModel model, int id) {
-		var query = "update t_brand set brand = ? where id_brand = " + id;
-		
-		return jdbc.update(query, new Object[] {model.getBrand()});
-	}
-
-	@Override
-	public int delete(int id) {
+	public int deletebrand(int id) {
 		var query = "delete from t_brand where id_Brand = " + id;
 		
 		return jdbc.update(query);
 	}
 
+	public String insertbrand(BrandModel brandModel) {
+		var query = "insert into t_brand (brand) value (?)";
+		return ""+jdbc.update(query, new Object[] {brandModel.getBrand()});
+	}
+	
+	@Override
+	public int updatebrand(BrandModel model, int id) {
+		var query = "update t_brand set brand = ? where id_brand = " + id;
+		
+		return jdbc.update(query, new Object[] {model.getBrand()});
+	}
+	
 
 
 

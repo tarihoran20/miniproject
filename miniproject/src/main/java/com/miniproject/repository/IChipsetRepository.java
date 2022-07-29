@@ -8,9 +8,9 @@ public interface IChipsetRepository {
 	
 	public List<ChipsetModel> readAll();
 	
-	public String insert(ChipsetModel model, String chipset);
+	public String insertchipset(ChipsetModel chipsetModel);
 	
-	public int update(ChipsetModel model, int id);
+	public int updatechipset(ChipsetModel model, int id);
 	
 	public int delete(int id);
 

@@ -3,6 +3,11 @@ package com.miniproject.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,14 +27,16 @@ public class ChipsetController {
 		return chipsetService.readAll();
 	}
 	
-	@RequestMapping("/miniproject/insertchipset")
-	public String insert(ChipsetModel model, @RequestParam String chipset) {
-		return chipsetService.insert(model, chipset);
+	@PostMapping("/miniproject/insertchipset")
+	public String insertchipset(@RequestBody ChipsetModel chipsetModel) {
+		chipsetService.insertchipset(chipsetModel);
+		return "Chipset --> Inserted";
 	}
 	
-	@RequestMapping("/miniproject/updatechipset")
-	public String update(ChipsetModel model, @RequestParam int id) {
-		return "Updated -->"+ chipsetService.update(model, id);
+	@PutMapping("/miniproject/updatechipset")
+	public ResponseEntity<String> updatechipset(@RequestParam int id, @RequestBody ChipsetModel chipsetModel) {
+		chipsetService.updatechipset(chipsetModel, id);
+		return new ResponseEntity<> ("Chipset Updated --> ", HttpStatus.OK); 
 	}
 	
 	@RequestMapping("/miniproject/deletechipset")

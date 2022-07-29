@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.miniproject.model.DataHandphoneModel;
-import com.miniproject.model.DeleteDataHandphoneModel;
 import com.miniproject.model.PhoneJoinNetworkModel;
 import com.miniproject.model.PhoneNetworkModel;
 import com.miniproject.service.IDataHandphoneService;
@@ -54,7 +53,7 @@ public class DataHandphoneController {
 		return datahandphoneService.join();
 	}
 	
-	@DeleteMapping("/miniproject/deletehandphone")
+	@RequestMapping("/miniproject/deletehandphone")
 	public String delete(@RequestParam String phone) {
 		
 		return "Deleted "+datahandphoneService.deletehandphone(phone);

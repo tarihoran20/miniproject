@@ -8,31 +8,37 @@ import org.springframework.stereotype.Service;
 import com.miniproject.model.DataHandphoneModel;
 import com.miniproject.model.PhoneJoinNetworkModel;
 import com.miniproject.model.PhoneNetworkModel;
+import com.miniproject.repository.IDataHandphoneNetworkRepository;
+import com.miniproject.repository.IDataHandphoneRepository;
 import com.miniproject.repository.impl.DataHandphoneRepository;
 import com.miniproject.service.IDataHandphoneService;
+
+import lombok.experimental.var;
 
 @Service
 public class DataHandphoneService implements IDataHandphoneService {
 
 	@Autowired
-	DataHandphoneRepository datahandphoneRepository;
+	IDataHandphoneRepository datahandphoneRepository;
+	@Autowired
+	IDataHandphoneNetworkRepository dataHandphoneNetworkRepository;
 
 	@Override
 	public List<DataHandphoneModel> readAll() {
-		return datahandphoneRepository.readAll();
+		var result = datahandphoneRepository.readAll();
+		
+		for(var row : result)
+		{
+			var networks = dataHandphoneNetworkRepository.readAllByIdPhone(row.getId());
+			row.setNetworks(networks);
+		}
+		
+		return result;
 	}
 
 	@Override
 	public List<DataHandphoneModel> read() {
 
-		DataHandphoneModel model = new DataHandphoneModel();
-		PhoneNetworkModel model2 = new PhoneNetworkModel();
-
-		for (int i = 0; i < readnetwork().size(); i++) {
-			if (model.getType() == model2.getType()) {
-				// System.out.println(model2.getNetwork());
-			}
-		}
 
 		return datahandphoneRepository.read();
 	}

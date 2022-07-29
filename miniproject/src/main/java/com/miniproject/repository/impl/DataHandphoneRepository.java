@@ -20,7 +20,15 @@ public class DataHandphoneRepository implements IDataHandphoneRepository {
 
 	@Override
 	public List<DataHandphoneModel> readAll() {
-		var query = "select * from t_datahandphone";
+		var query = "select * from (\r\n"
+				+ "select t_datahandphone.id, t_datahandphone.type as type,  t_brand.brand as brand, t_os.os as os, t_chipset.chipset as chipset,\r\n"
+				+ "t_datahandphone.price as price\r\n"
+				+ "from t_datahandphone\r\n"
+				+ "join t_brand on t_datahandphone.id_brand = t_brand.id_brand\r\n"
+				+ "join t_os on t_datahandphone.id_os = t_os.id_os\r\n"
+				+ "join t_chipset on t_datahandphone.id_chipset = t_chipset.id_chipset group by t_datahandphone.type ) as tb";
+		
+		
 		return jdbc.query(query, new BeanPropertyRowMapper<DataHandphoneModel>(DataHandphoneModel.class));
 	}
 
@@ -36,8 +44,8 @@ public class DataHandphoneRepository implements IDataHandphoneRepository {
 				// jdbc.update(query);
 				var query = " insert into t_datahandphone (id_brand, type, id_os, id_chipset, id_network, price)"
 						+ "value (?, ?, ?, ?, " + id_network[i] + ", ?)";
-				jdbc.update(query, new Object[] { model.getId_brand(), model.getType(), model.getId_os(),
-						model.getId_chipset(), model.getPrice() });
+				jdbc.update(query, new Object[] { model.getBrand(), model.getType(), model.getOs(),
+						model.getChipset(), model.getPrice() });
 
 			}
 		}
@@ -52,21 +60,16 @@ public class DataHandphoneRepository implements IDataHandphoneRepository {
 
 	@Override
 	public List<DataHandphoneModel> read() {
-		var query = "select*from(\r\n"
+		var query = "select * from (\r\n"
 				+ "select t_datahandphone.id, t_datahandphone.type as type,  t_brand.brand as id_brand, t_os.os as id_os, t_chipset.chipset as id_chipset,\r\n"
-				+ "t_datahandphone.price as price, t_network.network as id_network\r\n" + "from t_datahandphone\r\n"
+				+ "t_datahandphone.price as price, t_network.network as id_network\r\n"
+				+ "from t_datahandphone\r\n"
 				+ "join t_brand on t_datahandphone.id_brand = t_brand.id_brand\r\n"
 				+ "join t_os on t_datahandphone.id_os = t_os.id_os\r\n"
 				+ "join t_chipset on t_datahandphone.id_chipset = t_chipset.id_chipset\r\n"
-				+ "join t_network on t_datahandphone.id_network = t_network.id_network  group by t_datahandphone.type ) as tb\r\n"
-				+ ";";
+				+ "join t_network on t_datahandphone.id_network = t_network.id_network  group by t_datahandphone.type  ) as tb";
 //		
-//		var query2 = "select t_network.network\r\n"
-//				+ "from t_datahandphone\r\n"
-//				+ "join t_network\r\n"
-//				+ "on t_datahandphone.id_network = t_network.id_network\r\n"
-//				+ "where t_datahandphone.type like '%A03s%';";
-
+//		
 		return jdbc.query(query, new BeanPropertyRowMapper<DataHandphoneModel>(DataHandphoneModel.class));
 
 	}

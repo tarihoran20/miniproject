@@ -8,10 +8,10 @@ public interface IBrandService {
 	
 	public List<BrandModel> readAll();
 	
-	public String insert(BrandModel model, String brand);
+	public int updatebrand(BrandModel model, int id);
 	
-	public int update(BrandModel model, int id);
-	
-	public int delete(int id);
+	public int deletebrand(int id);
+
+	public String insertbrand(BrandModel brandModel);
 
 }

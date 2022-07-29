@@ -3,6 +3,11 @@ package com.miniproject.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,23 +27,22 @@ public class BrandController {
 
 		return brandService.readAll();
 	}
-	
-	@RequestMapping("/miniproject/insertbrand")
-	public String insert(BrandModel model, @RequestParam String brand) {
 
-		return brandService.insert(model, brand);
+	@PutMapping("/miniproject/updatebrand")
+	public ResponseEntity<String> updatebrand(@RequestParam int id, @RequestBody BrandModel brandModel) {
+		brandService.updatebrand(brandModel, id);
+		return new ResponseEntity<>("Brand Updated --> ", HttpStatus.OK);
+	}
+
+	@PostMapping("/miniproject/insertbrand")
+	public String insertbrand(@RequestBody BrandModel brandModel) {
+		brandService.insertbrand(brandModel);
+		return "Brand --> Inserted ";
+
 	}
 	
-	@RequestMapping("/miniproject/updatebrand")
-	public int update(BrandModel model, @RequestParam int id) {
-
-		return brandService.update(model, id);
-	}
-	
-	@RequestMapping("/miniproject/deletebrand")
-	public String delete(@RequestParam int id) {
-
-		return "Deleted " + brandService.delete(id);
-	}
-	
+	@DeleteMapping("/miniproject/deletebrand")
+	public String deletebrand(@RequestParam int id) {
+		return "Brand Deleted --> " + brandService.deletebrand(id);
+	}	
 }

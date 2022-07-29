@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.miniproject.model.BrandModel;
 import com.miniproject.model.ChipsetModel;
+import com.miniproject.repository.impl.BrandRepository;
 import com.miniproject.repository.impl.ChipsetRepository;
 import com.miniproject.service.IChipsetService;
 
@@ -21,14 +23,14 @@ public class ChipsetService implements IChipsetService{
 	}
 
 	@Override
-	public String insert(ChipsetModel model, String chipset) {
+	public String insertchipset(ChipsetModel chipsetModel) {
 		
-		return chipsetRepository.insert(model, chipset);
+		return chipsetRepository.insertchipset(chipsetModel);
 	}
 
 	@Override
-	public int update(ChipsetModel model, int id) {
-		return chipsetRepository.update(model, id);
+	public int updatechipset(ChipsetModel chipsetModel, int id) {
+		return chipsetRepository.updatechipset(chipsetModel, id);
 	}
 
 	@Override
