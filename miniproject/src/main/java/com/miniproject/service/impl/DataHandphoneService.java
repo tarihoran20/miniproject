@@ -54,14 +54,18 @@ public class DataHandphoneService implements IDataHandphoneService {
 	}
 
 	@Override
-	public int deletehandphone(String phone) {
-		return datahandphoneRepository.deletehandphone(phone);
+	public String insertdatahandphone(DataHandphoneModel dhModel) {
+		return datahandphoneRepository.insertdatahandphone(dhModel);
 	}
 
 	@Override
-	public String insert(DataHandphoneModel model, int id_brand, String type, int id_os, int id_chipset,
-			String[] id_network, int price) {
-		return datahandphoneRepository.insert(model, id_brand, type, id_os, id_chipset, id_network, price);
+	public int updatedatahandphone(DataHandphoneModel dhModel, int id) {
+		return datahandphoneRepository.updatedatahandphone(dhModel, id);
+	}
+
+	@Override
+	public int deletedatahandphone(int id) {
+		return datahandphoneRepository.deletedatahandphone(id);
 	}
 
 }

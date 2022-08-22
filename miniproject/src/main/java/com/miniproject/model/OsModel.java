@@ -18,5 +18,18 @@ public class OsModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_os;
 	private String os;
+	public int getId_os() {
+		return id_os;
+	}
+	public void setId_os(int id_os) {
+		this.id_os = id_os;
+	}
+	public String getOs() {
+		return os;
+	}
+	public void setOs(String os) {
+		this.os = os;
+	}
+	
 
 }

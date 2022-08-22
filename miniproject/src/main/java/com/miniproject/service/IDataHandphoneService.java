@@ -11,7 +11,9 @@ public interface IDataHandphoneService {
 	
 	public List<DataHandphoneModel> readAll();
 	
-	public String insert(DataHandphoneModel model, int id_brand, String type, int id_os, int id_chipset, String[] i_network, int price);
+	public String insertdatahandphone(DataHandphoneModel dhModel);
+	
+	public int updatedatahandphone(DataHandphoneModel dhModel, int id);
 	
 	public List<DataHandphoneModel> read();
 	
@@ -19,7 +21,7 @@ public interface IDataHandphoneService {
 	
 	public List<PhoneJoinNetworkModel> join();
 	
-	public int deletehandphone(String phone);
+	public int deletedatahandphone(int id);
 
 
 }

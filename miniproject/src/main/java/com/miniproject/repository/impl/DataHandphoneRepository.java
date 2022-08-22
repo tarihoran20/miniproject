@@ -20,54 +20,25 @@ public class DataHandphoneRepository implements IDataHandphoneRepository {
 
 	@Override
 	public List<DataHandphoneModel> readAll() {
-		var query = "select * from (\r\n"
-				+ "select t_datahandphone.id, t_datahandphone.type as type,  t_brand.brand as brand, t_os.os as os, t_chipset.chipset as chipset,\r\n"
+		var query = "select t_datahandphone.id, t_datahandphone.type as type,  t_brand.brand as brand, t_os.os as os, t_chipset.chipset as chipset,\r\n"
 				+ "t_datahandphone.price as price\r\n"
 				+ "from t_datahandphone\r\n"
 				+ "join t_brand on t_datahandphone.id_brand = t_brand.id_brand\r\n"
 				+ "join t_os on t_datahandphone.id_os = t_os.id_os\r\n"
-				+ "join t_chipset on t_datahandphone.id_chipset = t_chipset.id_chipset group by t_datahandphone.type ) as tb";
+				+ "join t_chipset on t_datahandphone.id_chipset = t_chipset.id_chipset order by t_datahandphone.id desc";
 		
 		
 		return jdbc.query(query, new BeanPropertyRowMapper<DataHandphoneModel>(DataHandphoneModel.class));
 	}
 
 	@Override
-	public String insert(DataHandphoneModel model, int id_brand, String type, int id_os, int id_chipset,
-			String[] id_network, int price) {
-
-		for (int i = 0; i < id_network.length; i++) {
-			if (id_network[i] != "," && id_network[i] != " ") {
-				// var query = " insert into t_datahandphone (id_brand, type, id_os, id_chipset,
-				// id_network, price) value (" +id_brand+ ", " +type+ ", " +id_os+ ", "
-				// +id_chipset+ ", " +id_network[i]+ ", " +price+ ")";
-				// jdbc.update(query);
-				var query = " insert into t_datahandphone (id_brand, type, id_os, id_chipset, id_network, price)"
-						+ "value (?, ?, ?, ?, " + id_network[i] + ", ?)";
-				jdbc.update(query, new Object[] { model.getBrand(), model.getType(), model.getOs(),
-						model.getChipset(), model.getPrice() });
-
-			}
-		}
-		// var query = " insert into t_datahandphone (id_brand, type, id_os, id_chipset,
-		// id_network, price) value (?, ?, ?, ?, ?, ?)";
-
-		return "Inserted --> ";
-//		 jdbc.update(query, new Object[] { model.getId_brand(), model.getType(),
-//		 model.getId_os(),model.getId_chipset(), model.getId_network(),
-//		 model.getPrice() });
-	}
-
-	@Override
 	public List<DataHandphoneModel> read() {
-		var query = "select * from (\r\n"
-				+ "select t_datahandphone.id, t_datahandphone.type as type,  t_brand.brand as id_brand, t_os.os as id_os, t_chipset.chipset as id_chipset,\r\n"
-				+ "t_datahandphone.price as price, t_network.network as id_network\r\n"
+		var query = "select t_datahandphone.id, t_datahandphone.type as type,  t_brand.brand as brand, t_os.os as os, t_chipset.chipset as chipset,\r\n"
+				+ "t_datahandphone.price as price\r\n"
 				+ "from t_datahandphone\r\n"
 				+ "join t_brand on t_datahandphone.id_brand = t_brand.id_brand\r\n"
 				+ "join t_os on t_datahandphone.id_os = t_os.id_os\r\n"
-				+ "join t_chipset on t_datahandphone.id_chipset = t_chipset.id_chipset\r\n"
-				+ "join t_network on t_datahandphone.id_network = t_network.id_network  group by t_datahandphone.type  ) as tb";
+				+ "join t_chipset on t_datahandphone.id_chipset = t_chipset.id_chipset";
 //		
 //		
 		return jdbc.query(query, new BeanPropertyRowMapper<DataHandphoneModel>(DataHandphoneModel.class));
@@ -82,8 +53,22 @@ public class DataHandphoneRepository implements IDataHandphoneRepository {
 		return jdbc.query(query, new BeanPropertyRowMapper<PhoneNetworkModel>(PhoneNetworkModel.class));
 	}
 
-	public int deletehandphone(String phone) {
-		var query = "delete from t_datahandphone where type like '%" + phone + "%'";
+
+	@Override
+	public String insertdatahandphone(DataHandphoneModel dhModel) {
+		var query = "insert into t_datahandphone (type, id_brand, id_chipset, id_os, price) value (?, ?, ?, ?, ?)";
+		return ""+jdbc.update(query, new Object[] {dhModel.getType(), dhModel.getBrand(), dhModel.getChipset(), dhModel.getOs(), dhModel.getPrice()});
+	}
+
+	@Override
+	public int updatedatahandphone(DataHandphoneModel dhModel, int id) {
+		var query = "update t_datahandphone set type = ?, id_brand = ?, id_chipset = ?, id_os = ?, price = ? where id = " + id;
+		return jdbc.update(query, new Object[] {dhModel.getType(), dhModel.getBrand(), dhModel.getChipset(), dhModel.getOs(), dhModel.getPrice()});
+	}
+
+	@Override
+	public int deletedatahandphone(int id) {
+		var query = "delete from t_datahandphone where id = " + id;
 		return jdbc.update(query);
 	}
 

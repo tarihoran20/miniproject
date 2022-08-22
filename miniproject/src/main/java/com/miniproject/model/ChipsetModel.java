@@ -19,6 +19,19 @@ public class ChipsetModel {
 	private int id_chipset;
 	private String chipset;
 	
+	public int getId_chipset() {
+		return id_chipset;
+	}
+	public void setId_chipset(int id_chipset) {
+		this.id_chipset = id_chipset;
+	}
+	public String getChipset() {
+		return chipset;
+	}
+	public void setChipset(String chipset) {
+		this.chipset = chipset;
+	} 
+	
 	
 
 }

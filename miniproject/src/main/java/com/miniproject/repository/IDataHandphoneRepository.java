@@ -11,11 +11,13 @@ public interface IDataHandphoneRepository {
 	
 	public List<DataHandphoneModel> read(); //read by foreign key
 	
-	public String insert(DataHandphoneModel model, int id_brand, String type, int id_os, int id_chipset,String[] id_network, int price);
+	public String insertdatahandphone(DataHandphoneModel dhModel);
 	
 	public List<PhoneNetworkModel> readnetwork();
 	
-	public int deletehandphone(String phone);
+	public int deletedatahandphone(int id);
+	
+	public int updatedatahandphone(DataHandphoneModel dhModel, int id);
 	
 
 
